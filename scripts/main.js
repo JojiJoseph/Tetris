@@ -255,91 +255,96 @@ function getRandomPiece() {
 function getNextFillStyle() {
   return Math.floor(Math.random()*(PALLET.length-1))+1;
 }
+function nextRotationCW(piece){
+  switch (piece) {
+    case pieceVertical:
+      return pieceHorizontal;
+    case pieceHorizontal:
+      return pieceVertical;
+    case pieceL:
+      return pieceL2;
+    case pieceL2:
+      return pieceL3;
+    case pieceL3:
+      return pieceL4;
+    case pieceL4:
+      return pieceL;
+    case pieceLFlip:
+      return pieceLFlip2;
+    case pieceLFlip2:
+      return pieceLFlip3;
+    case pieceLFlip3:
+      return pieceLFlip4;
+    case pieceLFlip4:
+      return pieceLFlip;
+    case pieceT:
+      return pieceT2;
+    case pieceT2:
+      return pieceT3;
+    case pieceT3:
+      return pieceT4;
+    case pieceT4:
+      return pieceT;
+    case pieceLeftDog:
+      return pieceLeftDog2;
+    case pieceLeftDog2:
+      return pieceLeftDog;
+    case pieceRightDog:
+      return pieceRightDog2;
+    case pieceRightDog2:
+      return pieceRightDog;
+    default:
+      return piece;
+  }
+}
+function nextRoationCCW(piece) {
+  switch (piece) {
+    case pieceVertical:
+      return pieceHorizontal;
+    case pieceHorizontal:
+      return pieceVertical;
+    case pieceL:
+      return pieceL4;
+    case pieceL4:
+      return pieceL3;
+    case pieceL3:
+      return pieceL2;
+    case pieceL2:
+      return pieceL;
+    case pieceLFlip:
+      return pieceLFlip4;
+    case pieceLFlip4:
+      return pieceLFlip3;
+    case pieceLFlip3:
+      return pieceLFlip2;
+    case pieceLFlip2:
+      return pieceLFlip;
+    case pieceT:
+      return pieceT4;
+    case pieceT4:
+      return pieceT3;
+    case pieceT3:
+      return pieceT2;
+    case pieceT2:
+      return pieceT;
+    case pieceLeftDog:
+      return pieceLeftDog2;
+    case pieceLeftDog2:
+      return pieceLeftDog;
+    case pieceRightDog:
+      return pieceRightDog2;
+    case pieceRightDog2:
+      return pieceRightDog;
+    default:
+      return piece;
+  }
+}
 function nextRotation(piece, dir = CW) {
   if (dir == CW) {
-    switch (piece) {
-      case pieceVertical:
-        return pieceHorizontal;
-        break;
-      case pieceHorizontal:
-        return pieceVertical;
-        break;
-      case pieceL:
-        return pieceL2;
-      case pieceL2:
-        return pieceL3;
-      case pieceL3:
-        return pieceL4;
-      case pieceL4:
-        return pieceL;
-      case pieceLFlip:
-        return pieceLFlip2;
-      case pieceLFlip2:
-        return pieceLFlip3;
-      case pieceLFlip3:
-        return pieceLFlip4;
-      case pieceLFlip4:
-        return pieceLFlip;
-      case pieceT:
-        return pieceT2;
-      case pieceT2:
-        return pieceT3;
-      case pieceT3:
-        return pieceT4;
-      case pieceT4:
-        return pieceT;
-      case pieceLeftDog:
-        return pieceLeftDog2;
-      case pieceLeftDog2:
-        return pieceLeftDog;
-      case pieceRightDog:
-        return pieceRightDog2;
-      case pieceRightDog2:
-        return pieceRightDog;
-    }
+    return nextRoationCW();
   } else {
-    switch (piece) {
-      case pieceVertical:
-        return pieceHorizontal;
-        break;
-      case pieceHorizontal:
-        return pieceVertical;
-        break;
-      case pieceL:
-        return pieceL4;
-      case pieceL4:
-        return pieceL3;
-      case pieceL3:
-        return pieceL2;
-      case pieceL2:
-        return pieceL;
-      case pieceLFlip:
-        return pieceLFlip4;
-      case pieceLFlip4:
-        return pieceLFlip3;
-      case pieceLFlip3:
-        return pieceLFlip2;
-      case pieceLFlip2:
-        return pieceLFlip;
-      case pieceT:
-        return pieceT4;
-      case pieceT4:
-        return pieceT3;
-      case pieceT3:
-        return pieceT2;
-      case pieceT2:
-        return pieceT;
-      case pieceLeftDog:
-        return pieceLeftDog2;
-      case pieceLeftDog2:
-        return pieceLeftDog;
-      case pieceRightDog:
-        return pieceRightDog2;
-      case pieceRightDog2:
-        return pieceRightDog;
-    }
+    return nextRoationCCW();
   }
-  return piece;
 }
 function isRotationPossible( dir = CW) {
   let next = nextRotation(piece, dir);
@@ -374,13 +379,10 @@ function isPossible(piece, dir) {
   switch (dir) {
     case LEFT:
       return isMoveLeftPossible();
-      break;
     case UP:
       return isMoveUpPossible();
-      break;
     case RIGHT:
       return isMoveRightPossible();
-      break;
     case DOWN:
       for (i=0; i<4; ++i) {
         if (pieceOffsetY + piece[i][1]+1 > ROWS-1 ||
