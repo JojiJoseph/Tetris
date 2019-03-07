@@ -1,10 +1,1 @@
-[] Spacing in scoreBoard
-[x] Implement static array rotation
-[] Git version
-[] Upload to git
-[] Host app
-[x] Start blocks from center
-[x] Rotate based on center
-[x] Update help
-[x] Implement rotate counter clock wise
-[] Refactor
+[] Store top scores
