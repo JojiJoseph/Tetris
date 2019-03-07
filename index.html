@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tetris</title>
+    <link href="./style.css"  rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+      <div id="main">
+        <canvas id="canvas" width=800 height=600></canvas>
+      </div>
+      <div id="menu">
+        <div class="button-container">
+          <button id="play-button">Play</button>
+          <button id="help-button">Help</button>
+          <button id="about-button">About</button>
+        </div>
+      </div>
+      <div id="game-over">
+        <div class="button-container">
+          <h1>Game Over</h1>
+          <h2 id="game-over-score"></h2>
+          <button id="restart-button">Restart</button>
+        </div>
+      </div>
+      <div id="about-dialog">
+        <div class="button-container">
+          <div class="dialog-box">
+            <div class="dialog-title">
+              About<span id="about-close-button" class="close-button"></span>
+            </div>
+            <div class="dialog-content">
+              <br>
+              <h2>Developed By Joji</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="help-dialog">
+        <div class="button-container">
+          <div class="dialog-box">
+            <div class="dialog-title">
+              Help<span id="help-close-button" class="close-button"></span>
+            </div>
+            <div class="dialog-content">
+              <img class="help-image" src="./help.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

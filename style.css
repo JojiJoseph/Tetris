@@ -1,0 +1,105 @@
+* {
+   font-family: sans serif;
+}
+body {
+  margin: 0;
+}
+.container {
+  position: relative;
+  width: 800px;
+  height: 600px;
+}
+#menu, #about-dialog, #help-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 600px;
+  text-align: center;
+  background-color: rgba(0,0,0,0.5);
+}
+#about-dialog, #help-dialog, #game-over {
+  display: none;
+}
+#game-over {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 600px;
+  text-align: center;
+  background-color: rgba(0,0,0,0.5);
+}
+#game-over h1 {
+  font-size: 72px;
+  line-height: 1em;
+}
+#game-over {
+  line-height: 1.5em;
+}
+#main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 600px;
+}
+.button-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  text-align: center;
+  display: inline-block;
+  color: #FFF;
+}
+button {
+  padding: 20px;
+  width: 100%;
+  font-weight: bold;
+  color: #FFF;
+  background-color: #808080;
+  border: 2px solid #b3b3b3;
+  font-size: 32px;
+  display: block;
+  margin: 10px;
+  min-width: 300px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #666666;
+}
+.dialog-box {
+  background-color: #808080;
+  border: 2px solid #b3b3b3;
+  width: 500px;
+}
+.dialog-title {
+  background-color: #666666;
+  border-bottom: 2px solid #b3b3b3;
+  text-align: left;
+  padding: 10px;
+  font-size: 24px;
+}
+.dialog-content {
+  min-height: 100px;
+}
+.close-button {
+  background: url('./close-icon.png');
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  float: right;
+}
+.close-button:hover {
+  background: url('./close-icon-hover.png');
+  cursor: pointer;
+}
+.help-image {
+  margin: 20px;
+}
+#canvas {
+  background: #F0F0F0;
+}
