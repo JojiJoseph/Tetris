@@ -90,7 +90,6 @@ button:hover {
   background: url('./close-icon.png');
   width: 30px;
   height: 30px;
-  display: inline-block;
   float: right;
 }
 .close-button:hover {
