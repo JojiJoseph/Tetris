@@ -228,10 +228,10 @@ function update(time) {
 }
 function promptSaveTopscore() {
   topscorerName.onkeyup =(event) => {
-    if(event.keyCode == KEY_ENTER) {
+    if (event.keyCode == KEY_ENTER) {
       submitTopscoreButton.click();
     }
-  }
+  };
   let highScores = JSON.parse(localStorage.getItem('high-scores'));
   topscorerName.value = '';
   if (highScores != null) {
