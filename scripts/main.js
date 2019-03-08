@@ -256,7 +256,6 @@ function saveTopscore(name, score) {
   highScores.sort((a, b) => {
     return b.score - a.score;
   });
-  if (highScores.length >= 10);
   highScores = highScores.slice(0, 10);
   localStorage.setItem('high-scores', JSON.stringify(highScores));
 }
