@@ -223,32 +223,42 @@ function update(time) {
     onScene = false;
     gameOver.style.display = 'block';
     gameOverScore.innerText = `You scored ${score}`;
-    let highScores = JSON.parse(localStorage.getItem('high-scores'));
-    topscorerName.value = '';
-    topscorerName.placeholder = 'Enter your name';
-    if (highScores != null) {
-      if (highScores.length < 10 || score > highScores[highScores.length-1].score) {
-        addTopScoreDialog.style.display = 'block';
-        submitTopscoreButton.onclick = () => {
-          highScores.push({name: topscorerName.value, score: score});
-          highScores.sort(function(a, b) {
-            return b.score - a.score;
-          });
-          if (highScores.length >= 10);
-          highScores = highScores.slice(0, 10);
-          localStorage.setItem('high-scores', JSON.stringify(highScores));
-          addTopScoreDialog.style.display = 'none';
-        };
-      }
-    } else {
+    promptSaveTopscore();
+  }
+}
+function promptSaveTopscore() {
+  topscorerName.onkeyup =(event) => {
+    if(event.keyCode == KEY_ENTER) {
+      submitTopscoreButton.click();
+    }
+  }
+  let highScores = JSON.parse(localStorage.getItem('high-scores'));
+  topscorerName.value = '';
+  if (highScores != null) {
+    if (highScores.length < 10 || score > highScores[highScores.length-1].score) {
       addTopScoreDialog.style.display = 'block';
       submitTopscoreButton.onclick = () => {
-        highScores = [{name: topscorerName.value, score: score}];
-        localStorage.setItem('high-scores', JSON.stringify(highScores));
+        saveTopscore(topscorerName.value, score);
         addTopScoreDialog.style.display = 'none';
       };
     }
+  } else {
+    addTopScoreDialog.style.display = 'block';
+    submitTopscoreButton.onclick = () => {
+      saveTopscore(topscorerName.value, score);
+      addTopScoreDialog.style.display = 'none';
+    };
   }
+}
+function saveTopscore(name, score) {
+  let highScores = JSON.parse(localStorage.getItem('high-scores')) || [];
+  highScores.push({name: name, score: score});
+  highScores.sort((a, b) => {
+    return b.score - a.score;
+  });
+  if (highScores.length >= 10);
+  highScores = highScores.slice(0, 10);
+  localStorage.setItem('high-scores', JSON.stringify(highScores));
 }
 function loop(time) {
   if (playing) {
