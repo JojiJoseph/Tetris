@@ -7,7 +7,7 @@ body {
   width: 800px;
   height: 600px;
 }
-#menu, #about-dialog, #help-dialog {
+#menu, #about-dialog, #help-dialog, #high-scores {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,7 +17,7 @@ body {
   text-align: center;
   background-color: rgba(0,0,0,0.5);
 }
-#about-dialog, #help-dialog, #game-over {
+#about-dialog, #help-dialog, #game-over, #high-scores {
   display: none;
 }
 #game-over {
@@ -29,6 +29,13 @@ body {
   height: 600px;
   text-align: center;
   background-color: rgba(0,0,0,0.5);
+}
+#high-scores table {
+  color: #FFF;
+}
+#high-scores table {
+  width: 100%;
+  padding: 10px;
 }
 #game-over h1 {
   font-size: 72px;

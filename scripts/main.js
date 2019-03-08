@@ -223,6 +223,18 @@ function update(time) {
     onScene = false;
     gameOver.style.display = 'block';
     gameOverScore.innerText = `You scored ${score}`;
+    let highScores = JSON.parse(localStorage.getItem('high-scores'));
+    if(highScores != null) {
+      if(score >= highScores[highScores.length-1].score) {
+        highScores.push({name:'name', score: score});
+        highScores.sort(function(a,b){
+          return a.score - b.score;
+        });
+      }
+    } else {
+      highScores = [{name:'name', score:score}];
+    }
+    localStorage.setItem('high-scores', JSON.stringify(highScores));
   }
 }
 function loop(time) {
