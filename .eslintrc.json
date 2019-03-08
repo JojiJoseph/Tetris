@@ -1,0 +1,16 @@
+{
+    "extends": "google",
+    "env": {
+            "es6": true,
+            "node": true
+        },
+    "rules": {
+      "prefer-const": "off",
+      "require-jsdoc": "off",
+      "no-invalid-this": "off",
+      "max-len": ["error", { "code": 120}]
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    }
+}

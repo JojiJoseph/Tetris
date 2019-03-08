@@ -8,11 +8,15 @@ class Input {
   }
   keyDown(event) {
     this.keys[event.keyCode] = true;
-    event.preventDefault();
+    if (playing) {
+      event.preventDefault();
+    }
   }
   keyUp(event) {
     this.keys[event.keyCode] = false;
-    event.preventDefault();
+    if (playing) {
+      event.preventDefault();
+    }
   }
   getPress(keyCode) {
     if (this.keys[keyCode] && Date.now() > this.timeLastPressed + KEY_BOUNCE_TIME) {

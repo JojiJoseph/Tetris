@@ -18,6 +18,9 @@ let helpDialogCloseButton = document.getElementById('help-close-button');
 let highScoresDialog = document.getElementById('high-scores');
 let highScoresDialogCloseButton = document.getElementById('high-scores-close-button');
 let backButton = document.getElementById('back-button');
+let submitTopscoreButton = document.getElementById('submit-topscore-button');
+let topscorerName = document.getElementById('topscorer-name');
+let addTopScoreDialog = document.getElementById('add-topscore');
 
 // Ui Event Listeners
 aboutButton.addEventListener('click', ()=>{
@@ -29,12 +32,19 @@ backButton.addEventListener('click', ()=>{
 });
 highScoresButton.addEventListener('click', () => {
   let highScores = JSON.parse(localStorage.getItem('high-scores'));
-  if(highScores) {
-    let table = highScores.querySelector('table');
-    table.innerHtml = '';
-    for(let i=0;i<highScores.length;++i) {
-      // TODO
+  let table = highScoresDialog.querySelector('table');
+  if (highScores) {
+    table.innerHTML = '';
+    let tableHeader = document.createElement('tr');
+    tableHeader.innerHTML = '<th>Name</th><th>Score</th>';
+    table.appendChild(tableHeader);
+    for (let i=0; i<highScores.length; ++i) {
+      let row = document.createElement('tr');
+      row.innerHTML = `<td>${highScores[i].name}</td><td>${highScores[i].score}</td>`;
+      table.appendChild(row);
     }
+  } else {
+    table.innerHTML = '<tr><th>Nothing to show.</th></tr>';
   }
   highScoresDialog.style.display = 'block';
 });

@@ -224,17 +224,30 @@ function update(time) {
     gameOver.style.display = 'block';
     gameOverScore.innerText = `You scored ${score}`;
     let highScores = JSON.parse(localStorage.getItem('high-scores'));
-    if(highScores != null) {
-      if(score >= highScores[highScores.length-1].score) {
-        highScores.push({name:'name', score: score});
-        highScores.sort(function(a,b){
-          return a.score - b.score;
-        });
+    topscorerName.value = '';
+    topscorerName.placeholder = 'Enter your name';
+    if (highScores != null) {
+      if (highScores.length < 10 || score > highScores[highScores.length-1].score) {
+        addTopScoreDialog.style.display = 'block';
+        submitTopscoreButton.onclick = () => {
+          highScores.push({name: topscorerName.value, score: score});
+          highScores.sort(function(a, b) {
+            return b.score - a.score;
+          });
+          if (highScores.length >= 10);
+          highScores = highScores.slice(0, 10);
+          localStorage.setItem('high-scores', JSON.stringify(highScores));
+          addTopScoreDialog.style.display = 'none';
+        };
       }
     } else {
-      highScores = [{name:'name', score:score}];
+      addTopScoreDialog.style.display = 'block';
+      submitTopscoreButton.onclick = () => {
+        highScores = [{name: topscorerName.value, score: score}];
+        localStorage.setItem('high-scores', JSON.stringify(highScores));
+        addTopScoreDialog.style.display = 'none';
+      };
     }
-    localStorage.setItem('high-scores', JSON.stringify(highScores));
   }
 }
 function loop(time) {
@@ -267,7 +280,7 @@ function getRandomPiece() {
 function getNextFillStyle() {
   return Math.floor(Math.random()*(PALLET.length-1))+1;
 }
-function nextRotationCW(piece){
+function nextRotationCW(piece) {
   switch (piece) {
     case pieceVertical:
       return pieceHorizontal;
