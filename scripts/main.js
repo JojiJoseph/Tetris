@@ -297,7 +297,7 @@ function nextRotationCW(piece){
       return piece;
   }
 }
-function nextRoationCCW(piece) {
+function nextRotationCCW(piece) {
   switch (piece) {
     case pieceVertical:
       return pieceHorizontal;
@@ -341,9 +341,9 @@ function nextRoationCCW(piece) {
 }
 function nextRotation(piece, dir = CW) {
   if (dir == CW) {
-    return nextRoationCW();
+    return nextRotationCW(piece);
   } else {
-    return nextRoationCCW();
+    return nextRotationCCW(piece);
   }
 }
 function isRotationPossible( dir = CW) {
