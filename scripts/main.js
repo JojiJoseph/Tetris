@@ -290,88 +290,56 @@ function getNextFillStyle() {
   return Math.floor(Math.random()*(PALLET.length-1))+1;
 }
 function nextRotationCW(piece) {
-  switch (piece) {
-    case pieceVertical:
-      return pieceHorizontal;
-    case pieceHorizontal:
-      return pieceVertical;
-    case pieceL:
-      return pieceL2;
-    case pieceL2:
-      return pieceL3;
-    case pieceL3:
-      return pieceL4;
-    case pieceL4:
-      return pieceL;
-    case pieceLFlip:
-      return pieceLFlip2;
-    case pieceLFlip2:
-      return pieceLFlip3;
-    case pieceLFlip3:
-      return pieceLFlip4;
-    case pieceLFlip4:
-      return pieceLFlip;
-    case pieceT:
-      return pieceT2;
-    case pieceT2:
-      return pieceT3;
-    case pieceT3:
-      return pieceT4;
-    case pieceT4:
-      return pieceT;
-    case pieceLeftDog:
-      return pieceLeftDog2;
-    case pieceLeftDog2:
-      return pieceLeftDog;
-    case pieceRightDog:
-      return pieceRightDog2;
-    case pieceRightDog2:
-      return pieceRightDog;
-    default:
-      return piece;
+  let bottom = piece[0][1];
+  let left = piece[0][0];
+  let top = bottom;
+  let right = left;
+  for (let i=1; i<4; ++i) {
+    if (piece[i][0] < left) {
+      left = piece[i][0];
+    }
+    if (piece[i][0] > right) {
+      right = piece[i][0];
+    }
+    if (piece[i][1] > bottom) {
+      bottom = piece[i][1];
+    }
+    if (piece[i][1] < top) {
+      top = piece[i][1];
+    }
   }
+  let newPiece = [[0, 0], [0, 0], [0, 0], [0, 0]];
+  for (let i=0; i<4; ++i) {
+    newPiece[i][0] = left - (piece[i][1] - bottom);
+    newPiece[i][1] = bottom + (piece[i][0] - right);
+  }
+  return newPiece;
 }
 function nextRotationCCW(piece) {
-  switch (piece) {
-    case pieceVertical:
-      return pieceHorizontal;
-    case pieceHorizontal:
-      return pieceVertical;
-    case pieceL:
-      return pieceL4;
-    case pieceL4:
-      return pieceL3;
-    case pieceL3:
-      return pieceL2;
-    case pieceL2:
-      return pieceL;
-    case pieceLFlip:
-      return pieceLFlip4;
-    case pieceLFlip4:
-      return pieceLFlip3;
-    case pieceLFlip3:
-      return pieceLFlip2;
-    case pieceLFlip2:
-      return pieceLFlip;
-    case pieceT:
-      return pieceT4;
-    case pieceT4:
-      return pieceT3;
-    case pieceT3:
-      return pieceT2;
-    case pieceT2:
-      return pieceT;
-    case pieceLeftDog:
-      return pieceLeftDog2;
-    case pieceLeftDog2:
-      return pieceLeftDog;
-    case pieceRightDog:
-      return pieceRightDog2;
-    case pieceRightDog2:
-      return pieceRightDog;
-    default:
-      return piece;
+  let bottom = piece[0][1];
+  let left = piece[0][0];
+  let top = bottom;
+  let right = left;
+  for (let i=1; i<4; ++i) {
+    if (piece[i][0] < left) {
+      left = piece[i][0];
+    }
+    if (piece[i][0] > right) {
+      right = piece[i][0];
+    }
+    if (piece[i][1] > bottom) {
+      bottom = piece[i][1];
+    }
+    if (piece[i][1] < top) {
+      top = piece[i][1];
+    }
   }
+  let newPiece = [[0, 0], [0, 0], [0, 0], [0, 0]];
+  for (let i=0; i<4; ++i) {
+    newPiece[i][0] = left + (piece[i][1] - top);
+    newPiece[i][1] = bottom - (piece[i][0] - left);
+  }
+  return newPiece;
 }
 function nextRotation(piece, dir = CW) {
   if (dir == CW) {
