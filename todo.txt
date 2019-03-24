@@ -1,2 +1,0 @@
-[] Store top scores
-[] Add add top score dialog
