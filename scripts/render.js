@@ -9,12 +9,12 @@ function render() {
 function renderWelcomeGrid() {
   matrix = generateWelcomeMatrix();
   ctx.save();
-  ctx.strokeStyle = PALLET[currentStrokeStyle];
+  ctx.strokeStyle = PALETTE[currentStrokeStyle];
   let offsetX = (800-COLUMNS*CELL_WIDTH)/2;
   let offsetY = (600-ROWS*CELL_HEIGHT)/2;
   for (column=0; column<COLUMNS; ++column) {
     for (row=0; row<ROWS; ++row) {
-      ctx.fillStyle = PALLET[Math.floor(Math.random()*(PALLET.length-1))+1];
+      ctx.fillStyle = PALETTE[Math.floor(Math.random()*(PALETTE.length-1))+1];
       ctx.fillRect(offsetX + column*CELL_WIDTH, offsetY + row*CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
       ctx.strokeRect(offsetX + column*CELL_WIDTH, offsetY + row*CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
     }
@@ -39,7 +39,7 @@ function renderHUD() {
   ctx.fillText('Next', 600, 80);
   let offsetX = 600 + CELL_WIDTH;
   let offsetY = 80 + CELL_HEIGHT;
-  ctx.fillStyle = PALLET[nextFillStyle];
+  ctx.fillStyle = PALETTE[nextFillStyle];
   for (i=0; i<4; ++i) {
     ctx.fillRect(offsetX + nextPiece[i][0]*CELL_WIDTH, offsetY + nextPiece[i][1]*CELL_HEIGHT,
         CELL_WIDTH, CELL_HEIGHT);
@@ -50,8 +50,8 @@ function renderHUD() {
 }
 function renderMovingBlocks() {
   ctx.save();
-  ctx.fillStyle = PALLET[currentFillStyle];
-  ctx.strokeStyle = PALLET[currentStrokeStyle];
+  ctx.fillStyle = PALETTE[currentFillStyle];
+  ctx.strokeStyle = PALETTE[currentStrokeStyle];
   let offsetX = (800-COLUMNS*CELL_WIDTH)/2;
   let offsetY = (600-ROWS*CELL_HEIGHT)/2;
   for (i=0; i<4; ++i) {
@@ -91,12 +91,12 @@ function renderGrids() {
   }
   ctx.restore();
   ctx.save();
-  ctx.strokeStyle = PALLET[currentStrokeStyle];
+  ctx.strokeStyle = PALETTE[currentStrokeStyle];
 
   for (column=0; column<COLUMNS; ++column) {
     for (row=0; row<ROWS; ++row) {
       if (matrix[row][column] != 0) {
-        ctx.fillStyle = PALLET[matrix[row][column]] || '#AAA';
+        ctx.fillStyle = PALETTE[matrix[row][column]] || '#AAA';
         ctx.fillRect(offsetX + column*CELL_WIDTH, offsetY + row*CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
         ctx.strokeRect(offsetX + column*CELL_WIDTH, offsetY + row*CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
       }

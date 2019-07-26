@@ -178,7 +178,7 @@ function getRandomPiece() {
   return pieces[Math.floor(pieces.length*Math.random())];
 }
 function getNextFillStyle() {
-  return Math.floor(Math.random()*(PALLET.length-1))+1;
+  return Math.floor(Math.random()*(PALETTE.length-1))+1;
 }
 function nextRotationCW(piece) {
   let bottom = piece[0][1];
